@@ -6,7 +6,7 @@
     <div class="sidebar-brand-icon rotate-n-15">
       <i class="fas fa-laugh-wink"></i>
     </div>
-    <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+    <div class="sidebar-brand-text mx-3">Admin</div>
   </a>
 
   <!-- Divider -->
@@ -41,6 +41,13 @@
     <a class="nav-link" href="?menu=contact">
       <i class="fas fa-fw fa-envelope"></i>
       <span>CONTACT</span>
+    </a>
+  </li>
+
+  <li class="nav-item active">
+    <a class="nav-link" href="?menu=logout">
+      <i class="fas fa-fw fa-sign-out-alt"></i>
+      <span>LOGOUT</span>
     </a>
   </li>
 
