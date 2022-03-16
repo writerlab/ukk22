@@ -41,7 +41,7 @@
       $_SESSION['username'] = $sesi['username'];
       $_SESSION['id'] = $sesi['username'];
       $_SESSION['email'] = $sesi['email'];
-
+	print "<h1> logged</h1>";
       header('Location: ?menu=home');
     }
   }
@@ -74,7 +74,7 @@
                                             <input name="password" type="password" class="form-control form-control-user"
                                                 id="exampleInputPassword" placeholder="Password">
                                         </div>
-                                        <button type="button" name="login" class="btn btn-primary btn-user btn-block">
+                                        <button type="submit" name="login" class="btn btn-primary btn-user btn-block">
                                             Login
                                         </button>
                                     </form>
