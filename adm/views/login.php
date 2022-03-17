@@ -39,7 +39,7 @@
       $sesi = mysqli_fetch_assoc($query);
 
       $_SESSION['username'] = $sesi['username'];
-      $_SESSION['id'] = $sesi['username'];
+      $_SESSION['id'] = $sesi['id'];
       $_SESSION['email'] = $sesi['email'];
 	print "<h1> logged</h1>";
       header('Location: ?menu=home');
