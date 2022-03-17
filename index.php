@@ -42,7 +42,7 @@ save_contact();
         </nav>
         <!-- Masthead-->
         <?php 
-        $q = "SELECT nama, jabatan, foto FROM `about`";
+        $q = "SELECT * FROM `about`";
         $data = mysqli_query($koneksi, $q);
         $user = mysqli_fetch_assoc($data);
         ?>
@@ -136,7 +136,7 @@ save_contact();
         <section class="page-section bg-primary text-white mb-0" id="about">
             <div class="container">
                 <!-- About Section Heading-->
-                <h2 class="page-section-heading text-center text-uppercase text-white">Tentang Itang</h2>
+                <h2 class="page-section-heading text-center text-uppercase text-white">Tentang</h2>
                 <!-- Icon Divider-->
                 <div class="divider-custom divider-light">
                     <div class="divider-custom-line"></div>
@@ -145,8 +145,8 @@ save_contact();
                 </div>
                 <!-- About Section Content-->
                 <div class="row">
-                    <div class="col-lg-4 ms-auto"><p class="lead">Freelancer is a free bootstrap theme created by Start Bootstrap. The download includes the complete source files including HTML, CSS, and JavaScript as well as optional SASS stylesheets for easy customization.</p></div>
-                    <div class="col-lg-4 me-auto"><p class="lead">You can create your own custom avatar for the masthead, change the icon in the dividers, and add your email address to the contact form to make it fully functional!</p></div>
+                    <div class="col-lg-4"><p class="lead"><?=$user['tentang']?></p></div>
+                    <!-- <div class="col-lg-4 me-auto"><p class="lead">You can create your own custom avatar for the masthead, change the icon in the dividers, and add your email address to the contact form to make it fully functional!</p></div> -->
                 </div>
             </div>
         </section>
