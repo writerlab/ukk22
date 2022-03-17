@@ -7,12 +7,17 @@ if (isset($_POST['simpan'])) {
   $foto = $_POST['foto'];
   $tentang = $_POST['tentang'];
 
-  $simpan = mysqli_query($koneksi, 
-  "
-  update about set nama='$nama', perusahaan='$perusahaan', jabatan='$jabatan',
-  foto='$foto', tentang='$tentang' where id=1
-  "
-  );
+  if(empty($foto)) {
+    $simpan = mysqli_query($koneksi, 
+    "update about set nama='$nama', perusahaan='$perusahaan', jabatan='$jabatan',
+    tentang='$tentang' where id=1"
+    );
+  } else {
+    $simpan = mysqli_query($koneksi, 
+    "update about set nama='$nama', perusahaan='$perusahaan', jabatan='$jabatan',
+    foto='$foto', tentang='$tentang' where id=1"
+    );
+  }
 
   if($simpan) {
     $pesan = "<div class='alert alert-success'>Berhasil diperbaharui</div>";
@@ -53,7 +58,7 @@ $data = mysqli_fetch_assoc($query);
           <div class="form-group">
             <label for="">TENTANG</label>
             <textarea name="tentang" class="form-control" cols="30" rows="5">
-              <?=$data['tentang']?>"
+              <?=$data['tentang']?>
             </textarea>
           </div>
           <button type="submit" class="btn btn-danger" name="simpan">SIMPAN</button>

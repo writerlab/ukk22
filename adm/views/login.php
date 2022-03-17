@@ -29,7 +29,8 @@
     $password = $_POST['password'];
 
     $query = mysqli_query($koneksi, 
-    "select * from login 
+    "select a.*, b.* from login a
+    inner join about b on a.id_about=b.id
     where username='$username' and 
     password=sha1('$password')
     ");
@@ -40,7 +41,8 @@
 
       $_SESSION['username'] = $sesi['username'];
       $_SESSION['id'] = $sesi['id'];
-      $_SESSION['email'] = $sesi['email'];
+      $_SESSION['foto'] = $sesi['foto'];
+      $_SESSION['nama'] = $sesi['nama'];
 	print "<h1> logged</h1>";
       header('Location: ?menu=home');
     }
