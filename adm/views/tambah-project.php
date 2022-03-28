@@ -1,7 +1,15 @@
+<?php
+if (isset($_POST['simpan'])) {
+  $nama = $_POST['nama'];
+  $keterangan = $_POST['keterangan'];
+  $foto = $_FILES['foto'];
+}
+?>
+
 <div class="row">
   <div class="col-md-6">
     <h1>Tambah Project</h1>
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
       <div class="form-group">
         <label>NAMA</label>
         <input type="text" name="nama" class="form-control">
