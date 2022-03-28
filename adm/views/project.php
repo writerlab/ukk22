@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <h1>
       Project
-      <a href="#" class="btn btn-primary">Tambah</a>
+      <a href="?menu=tambah-project" class="btn btn-primary">Tambah</a>
     </h1>
     <table class="table table-striped" id="">
       <thead>
@@ -15,11 +15,11 @@
       </thead>
       <tbody>
         <?php
-        $q = mysqli_query($koneksi, "select * from projek");
+        $q = mysqli_query($koneksi, "select * from project");
         while($data = mysqli_fetch_array($q)) {?>
         <tr>
           <td><?=$data['id']?></td>
-          <td><img src="<?=$data['foto']?>" width="130px"></td>
+          <td><img src="../foto/<?=$data['foto']?>" width="130px"></td>
           <td><?=$data['nama']?></td>
           <td>
             <a href="#" class="btn btn-info">Ubah</a>
