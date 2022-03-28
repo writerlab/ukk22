@@ -2,7 +2,7 @@
 if ($_GET['hapus']) {
   $id = $_GET['hapus'];
   $q = mysqli_query($koneksi, "delete from project where id=$id");
-  
+
 }
 ?>
 
@@ -30,7 +30,7 @@ if ($_GET['hapus']) {
           <td><img src="../foto/<?=$data['foto']?>" width="130px"></td>
           <td><?=$data['nama']?></td>
           <td>
-            <a href="#" class="btn btn-info">Ubah</a>
+            <a href="?menu=ubah-project&id=<?=$data['id']?>" class="btn btn-info">Ubah</a>
             <a href="#" data-toggle="modal" data-target="#modal-<?=$data['id']?>" class="btn btn-danger">Hapus</a>
           </td>
         </tr>
