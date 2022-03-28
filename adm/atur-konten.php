@@ -11,6 +11,9 @@ else if ($_GET['menu'] == 'project') {
 else if ($_GET['menu'] == 'contact') {
   include("views/contact.php");
 }
+else if ($_GET['menu'] == 'tambah-project') {
+  include("views/tambah-project.php");
+}
 else if ($_GET['menu'] == 'logout') {
   session_destroy();
   header('Location: index.php');
