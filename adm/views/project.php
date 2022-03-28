@@ -1,3 +1,11 @@
+<?php
+if ($_GET['hapus']) {
+  $id = $_GET['hapus'];
+  $q = mysqli_query($koneksi, "delete from project where id=$id");
+  
+}
+?>
+
 <div class="row">
   <div class="col-md-12">
     <h1>
@@ -23,9 +31,25 @@
           <td><?=$data['nama']?></td>
           <td>
             <a href="#" class="btn btn-info">Ubah</a>
-            <a href="#" class="btn btn-danger">Hapus</a>
+            <a href="#" data-toggle="modal" data-target="#modal-<?=$data['id']?>" class="btn btn-danger">Hapus</a>
           </td>
         </tr>
+        <div class="modal fade" id="modal-<?=$data['id']?>">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header bg-danger text-white">
+                YAKIN HAPUS?
+              </div>
+              <div class="modal-body">
+                apakah yakin ingin menghapus ini?
+              </div>
+              <div class="modal-footer">
+                <a href="?menu=project&hapus=<?=$data['id']?>" class="btn btn-danger">ya</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+              </div>
+            </div>
+          </div>
+        </div>
         <?php } ?>
       </tbody>
     </table>
