@@ -12,13 +12,18 @@ if (isset($_POST['simpan'])) {
     $q = mysqli_query($koneksi, 
     "insert into project values (NULL, '$nama', '$keterangan', '$namaFoto')"
     );
+    $message = "<div class='alert alert-success'>Project berhasil ditambahkan!</div>";
   }
 }
 ?>
 
 <div class="row">
   <div class="col-md-6">
-    <h1>Tambah Project</h1>
+    <h1>
+      Tambah Project
+      <a href="?menu=project" class="btn btn-danger">kembali</a>
+    </h1>
+    <?=$message?>
     <form action="" method="post" enctype="multipart/form-data">
       <div class="form-group">
         <label>NAMA</label>

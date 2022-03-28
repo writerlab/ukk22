@@ -57,9 +57,7 @@ $data = mysqli_fetch_assoc($query);
           </div>
           <div class="form-group">
             <label for="">TENTANG</label>
-            <textarea name="tentang" class="form-control" cols="30" rows="5">
-              <?=$data['tentang']?>
-            </textarea>
+            <textarea name="tentang" class="form-control" cols="30" rows="5"><?=$data['tentang']?></textarea>
           </div>
           <button type="submit" class="btn btn-danger" name="simpan">SIMPAN</button>
         </form>
