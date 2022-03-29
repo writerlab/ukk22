@@ -1,5 +1,6 @@
 <?php
 if (isset($_POST['simpan'])) {
+  $id = $_GET['id'];
   $nama = $_POST['nama'];
   $keterangan = $_POST['keterangan'];
   $foto = $_FILES['foto'];
@@ -7,12 +8,21 @@ if (isset($_POST['simpan'])) {
   $folder = '../foto/';
   $folder = $folder . basename($namaFoto);
 
-  if (move_uploaded_file($_FILES['foto']['tmp_name'], $folder)) {
-    rename("../foto/$namaFoto", "../foto/$namaFoto");
+  if(!empty($foto)) {
     $q = mysqli_query($koneksi, 
-    "insert into project values (NULL, '$nama', '$keterangan', '$namaFoto')"
+    "update project set nama='$nama', keterangan='$keterangan'
+    where id=$id"
     );
-    $message = "<div class='alert alert-success'>Project berhasil ditambahkan!</div>";
+    $message = "<div class='alert alert-success'>Project berhasil diubah!</div>";
+  } else {
+    if(move_uploaded_file($_FILES['foto']['tmp_name'], $folder)) {
+      rename("../foto/$namaFoto", "../foto/$namaFoto");
+      $q = mysqli_query($koneksi, 
+      "update project set nama='$nama', keterangan='$keterangan', foto='$namaFoto'
+      where id=$id"
+      );
+      $message = "<div class='alert alert-success'>Project berhasil diubah!</div>";
+    }
   }
 }
 
@@ -32,7 +42,7 @@ $data = mysqli_fetch_assoc($getData);
     <form action="" method="post" enctype="multipart/form-data">
       <div class="form-group">
         <label>NAMA</label>
-        <input type="text" name="nama" class="form-control" value="<?=$data['nama']?>">
+        <input type="text" name="nama" class="form-control" value="<?=$data['nama']?>" required>
       </div>
       <div class="form-group">
         <label>UPLOAD FOTO</label>
@@ -41,9 +51,7 @@ $data = mysqli_fetch_assoc($getData);
       </div>
       <div class="form-group">
         <label>KETERANGAN</label>
-        <textarea name="keterangan" cols="30" rows="3" class="form-control">
-        <?=$data['nama']?>
-        </textarea>
+        <textarea name="keterangan" cols="30" rows="3" class="form-control" required><?=$data['keterangan']?></textarea>
       </div>
       <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
     </form>
