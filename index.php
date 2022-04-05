@@ -1,6 +1,7 @@
 <?php 
 include("koneksi.php");
 include("functions/contact.php");
+include('api/about.php');
 
 // function utk submit pesan/kontak ke admin
 save_contact();?>
@@ -24,21 +25,18 @@ save_contact();?>
         <link href="css/styles.css" rel="stylesheet" />
     </head>
     <body id="page-top">
+      <div id="app">
         <!-- Navigation-->
         <?php include('components/navigation.html')?>
 
         <!-- Masthead-->
-        <?php 
-        $q = "SELECT * FROM `about`";
-        $data = mysqli_query($koneksi, $q);
-        $user = mysqli_fetch_assoc($data);
-        ?>
+        
         <header class="masthead bg-primary text-white text-center">
             <div class="container d-flex align-items-center flex-column">
                 <!-- Masthead Avatar Image-->
-                <img class="masthead-avatar mb-5" src="<?php print $user['foto']?>" style="border-radius:50%" />
+                <img class="masthead-avatar mb-5" :src="user.foto" style="border-radius:50%" />
                 <!-- Masthead Heading-->
-                <h1 class="masthead-heading text-uppercase mb-0"><?php print $user['nama']?></h1>
+                <h1 class="masthead-heading text-uppercase mb-0">{{ user.nama }}</h1>
                 <!-- Icon Divider-->
                 <div class="divider-custom divider-light">
                     <div class="divider-custom-line"></div>
@@ -46,7 +44,7 @@ save_contact();?>
                     <div class="divider-custom-line"></div>
                 </div>
                 <!-- Masthead Subheading-->
-                <p class="masthead-subheading font-weight-light mb-0"><?=$user['jabatan']?></p>
+                <p class="masthead-subheading font-weight-light mb-0">{{ user.jabatan }}</p>
             </div>
         </header>
 
@@ -64,7 +62,7 @@ save_contact();?>
                 <!-- About Section Content-->
                 <div class="row">
                     <div class="col-lg-6 offset-lg-3">
-                      <div class="text-center"><?=$user['tentang']?></div>
+                      <div class="text-center">{{ user.tentang }}</div>
                     </div>
                     <!-- <div class="col-lg-4 me-auto"><p class="lead">You can create your own custom avatar for the masthead, change the icon in the dividers, and add your email address to the contact form to make it fully functional!</p></div> -->
                 </div>
@@ -173,6 +171,7 @@ save_contact();?>
         <div class="copyright py-4 text-center text-white">
             <div class="container"><small>Copyright &copy; Your Website 2021</small></div>
         </div>
+    </div> <!-- tutup #app -->
         
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -183,5 +182,25 @@ save_contact();?>
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+        <script>
+          var app = new Vue({
+            el: '#app',
+            data() {
+              return {
+                user: ''
+              }
+            },
+            mounted() {
+              fetch('http://localhost:4000/api/about.php')
+                .then(res => res.json())
+                .then(data => {
+                  this.user = data
+                  console.log(this.user)
+                })
+            }
+          })
+        </script>
     </body>
 </html>
