@@ -22,7 +22,7 @@
 
 </head>
 
-<body class="bg-gradient-primary">
+<body class="bg-gradient-warning">
   <?php
   if(isset($_POST['login'])) {
     $username = $_POST['username'];
@@ -49,7 +49,7 @@
   }
   ?>
 
-    <div class="container">
+    <div id="app" class="container">
 
         <!-- Outer Row -->
         <div class="row justify-content-center">
@@ -66,19 +66,22 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Login!</h1>
                                     </div>
-                                    <form class="user" action="" method="post">
+                                    <form action="" method="post">
                                         <div class="form-group">
-                                            <input name="username" type="text" class="form-control form-control-user"
+                                            <input v-model="username" name="username" type="text" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
                                                 placeholder="Enter username...">
                                         </div>
-                                        <div class="form-group">
-                                            <input name="password" type="password" class="form-control form-control-user"
+                                        <div class="form-group" >
+                                            <input v-model="password" name="password" type="password" class="form-control form-control-user"
                                                 id="exampleInputPassword" placeholder="Password">
                                         </div>
-                                        <button type="submit" name="login" class="btn btn-primary btn-user btn-block">
+                                        <button  type="submit" name="login" class="btn btn-primary btn-user btn-block">
                                             Login
                                         </button>
+                                        <div class="text-center mt-3">
+                                          <a href="registrasi.php" class="text-dark">Registrasi</a>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
@@ -101,6 +104,19 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <script>
+      var app = new Vue({
+        el: '#app',
+        data() {
+          return {
+            username: '',
+            password: '',
+          }
+        },
+      })
+    </script>
 
 </body>
 
